@@ -1,11 +1,14 @@
 import { useState } from "react";
-import "./App.css";
+import { Provider } from "react-redux";
+
+import Body from "./components/Body";
+import appStore from "./utils/appStore";
 
 function App() {
   return (
-    <>
-      <h1>hello world!</h1>
-    </>
+    <Provider store={appStore}>
+      <Body />
+    </Provider>
   );
 }
 
