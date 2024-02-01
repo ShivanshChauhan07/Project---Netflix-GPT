@@ -3,13 +3,19 @@ import validateForm from "../utils/validateForm";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Form = ({ toggle, setToggle, show, setShow }) => {
   const [errorMessage, setErrormessage] = useState(null);
   const [emailError, setEmailerror] = useState(false);
   const [passwordError, setPassworderror] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const email = useRef(null);
   const password = useRef(null);
   const rePassword = useRef(null);
@@ -103,6 +109,28 @@ const Form = ({ toggle, setToggle, show, setShow }) => {
                 .then((userCredential) => {
                   // Signed up
                   const user = userCredential.user;
+                  updateProfile(user, {
+                    displayName: "Shivansh Chauhan",
+                    photoURL:
+                      "https://avatars.githubusercontent.com/u/88490665?v=4",
+                  })
+                    .then(() => {
+                      const { uid, email, displayName, photoURL } =
+                        auth.currentUser;
+                      dispatch(
+                        addUser({
+                          uid: uid,
+                          email: email,
+                          displayName: displayName,
+                          photoURL: photoURL,
+                        })
+                      );
+                      navigate("/browser");
+                    })
+                    .catch((error) => {
+                      setErrormessage(error);
+                    });
+                  // navigate("/browser");
                   console.log(user);
                   // ...
                 })
@@ -123,7 +151,30 @@ const Form = ({ toggle, setToggle, show, setShow }) => {
                 .then((userCredential) => {
                   // Signed in
                   const user = userCredential.user;
+                  updateProfile(user, {
+                    displayName: "Shivansh Chauhan",
+                    photoURL:
+                      "https://avatars.githubusercontent.com/u/88490665?v=4",
+                  })
+                    .then(() => {
+                      const { uid, email, displayName, photoURL } =
+                        auth.currentUser;
+                      dispatch(
+                        addUser({
+                          uid: uid,
+                          email: email,
+                          displayName: displayName,
+                          photoURL: photoURL,
+                        })
+                      );
+                      navigate("/browser");
+                    })
+                    .catch((error) => {
+                      setErrormessage(error);
+                    });
+
                   console.log(user);
+                  // navigate("/browser");
                   // ...
                 })
                 .catch((error) => {
