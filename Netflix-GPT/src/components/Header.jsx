@@ -42,14 +42,14 @@ const Header = () => {
             } overflow-hidden right-4 text-right font-medium text-sm cursor-pointer shadow-lg shadow-slate-300 `}
           >
             <ul>
-              <li className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400">
+              <li className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400 hover:bg-[#f2f2f2]">
                 Home
               </li>
-              <li className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400">
+              <li className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400 hover:bg-[#f2f2f2]">
                 Settings
               </li>
               <li
-                className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400"
+                className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400 hover:bg-[#f2f2f2]"
                 onClick={() => {
                   signOut(auth)
                     .then(() => {
