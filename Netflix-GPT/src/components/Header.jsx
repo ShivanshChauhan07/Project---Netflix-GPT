@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeUser } from "../utils/userSlice";
 import { auth } from "../utils/firebase";
 import { signOut } from "firebase/auth";
 import { Down } from "../utils/icons";
+import { addUser, removeUser } from "../utils/userSlice";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Header = () => {
   const user = useSelector((store) => store?.user);
@@ -12,8 +13,28 @@ const Header = () => {
   const dispatch = useDispatch();
   const [dropDown, setDropDown] = useState(false);
 
+  console.log(dropDown);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = auth.currentUser;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+      } else {
+        dispatch(removeUser());
+      }
+    });
+  }, []);
+
   return (
-    <div className=" flex justify-between bg-gradient-to-b from-black w-full p-4">
+    <div className="absolute top-0 z-10  flex justify-between bg-gradient-to-b from-black w-screen p-4">
       <div>
         <img
           className="w-44 h-12"
@@ -53,7 +74,7 @@ const Header = () => {
                 onClick={() => {
                   signOut(auth)
                     .then(() => {
-                      dispatch;
+                      setDropDown(!dropDown);
                       navigate("/");
                     })
                     .catch((error) => {

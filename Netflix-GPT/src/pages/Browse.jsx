@@ -4,7 +4,7 @@ import Header from "../components/Header";
 const Browse = () => {
   return (
     <>
-      <Header />
+      <h1>I m Browser</h1>
     </>
   );
 };
