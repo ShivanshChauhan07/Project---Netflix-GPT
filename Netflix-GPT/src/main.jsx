@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import Browse from "./pages/Browse.jsx";
 import appStore from "./utils/appStore.js";
 import Header from "./components/Header.jsx";
@@ -32,10 +32,6 @@ const appRouter = createBrowserRouter([
         element: <Browse />,
       },
     ],
-  },
-  {
-    path: "/loading",
-    element: <Loading />,
   },
 ]);
 

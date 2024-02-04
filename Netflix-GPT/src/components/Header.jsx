@@ -13,10 +13,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const [dropDown, setDropDown] = useState(false);
 
-  console.log(dropDown);
-
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = auth.currentUser;
         dispatch(
@@ -27,14 +25,18 @@ const Header = () => {
             photoURL: photoURL,
           })
         );
+        navigate("/browser");
       } else {
         dispatch(removeUser());
+        navigate("/");
       }
+
+      return () => unsubscribe();
     });
   }, []);
 
   return (
-    <div className="absolute top-0 z-10  flex justify-between bg-gradient-to-b from-black w-screen p-4">
+    <div className="absolute top-0 z-30 right-0 flex justify-between bg-gradient-to-b from-black w-screen p-8 ">
       <div>
         <img
           className="w-44 h-12"
@@ -58,9 +60,9 @@ const Header = () => {
             </div>
           </div>
           <div
-            className={`absolute w-2/12  transition-[height] duration-1000 ${
+            className={`absolute w-2/12 bg-white transition-[height] duration-1000 ${
               dropDown ? "h-24" : "h-0"
-            } overflow-hidden right-4 text-right font-medium text-sm cursor-pointer shadow-lg shadow-slate-300 `}
+            } overflow-hidden right-4 text-right font-medium text-sm cursor-pointer shadow-lg shadow-slate-500 `}
           >
             <ul>
               <li className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400 hover:bg-[#f2f2f2]">

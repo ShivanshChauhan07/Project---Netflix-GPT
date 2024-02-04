@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+div {
   margin: 0;
   padding: 0;
+}
+
+#hero {
+  display: none;
+}
+details:hover #hero {
+  display: block;
+  cursor: pointer;
 }
