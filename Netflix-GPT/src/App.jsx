@@ -1,15 +1,7 @@
-import { useState } from "react";
-import { Provider } from "react-redux";
-
-import Body from "./components/Body";
-import appStore from "./utils/appStore";
+import Login from "./pages/Login";
 
 function App() {
-  return (
-    <Provider store={appStore}>
-      <Body />
-    </Provider>
-  );
+  return <Login />;
 }
 
 export default App;

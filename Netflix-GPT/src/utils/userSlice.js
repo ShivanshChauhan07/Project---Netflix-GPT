@@ -5,13 +5,6 @@ const userSlice = createSlice({
   initialState: null,
   reducers: {
     addUser: (state, action) => {
-      // const [uid, email, displayName, photoURL] = action.payload;
-      // state.uid = uid;
-      // state.email = email;
-      // state.displayName = displayName;
-      // state.photoURL = photoURL;
-
-      // console.log(state);
       return action.payload;
     },
     removeUser: (state, action) => {

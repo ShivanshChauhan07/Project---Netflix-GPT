@@ -6,7 +6,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
@@ -14,7 +13,6 @@ const Form = ({ toggle, setToggle, show, setShow }) => {
   const [errorMessage, setErrormessage] = useState(null);
   const [emailError, setEmailerror] = useState(false);
   const [passwordError, setPassworderror] = useState(false);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const email = useRef(null);
   const password = useRef(null);
@@ -87,9 +85,8 @@ const Form = ({ toggle, setToggle, show, setShow }) => {
               setEmailerror,
               setPassworderror
             );
-            // console.log(toggle);
+
             if (emailError || passwordError) return;
-            console.log(passwordError);
 
             if (toggle) {
               if (password.current.value !== rePassword.current.value) {
@@ -97,7 +94,6 @@ const Form = ({ toggle, setToggle, show, setShow }) => {
                 return;
               }
             }
-            // console.log(emailError);
 
             // sign up logic here
             if (toggle) {
@@ -125,14 +121,10 @@ const Form = ({ toggle, setToggle, show, setShow }) => {
                           photoURL: photoURL,
                         })
                       );
-                      navigate("/browser");
                     })
                     .catch((error) => {
                       setErrormessage(error);
                     });
-                  // navigate("/browser");
-                  console.log(user);
-                  // ...
                 })
                 .catch((error) => {
                   const errorCode = error.code;
@@ -167,15 +159,10 @@ const Form = ({ toggle, setToggle, show, setShow }) => {
                           photoURL: photoURL,
                         })
                       );
-                      navigate("/browser");
                     })
                     .catch((error) => {
                       setErrormessage(error);
                     });
-
-                  console.log(user);
-                  // navigate("/browser");
-                  // ...
                 })
                 .catch((error) => {
                   const errorCode = error.code;

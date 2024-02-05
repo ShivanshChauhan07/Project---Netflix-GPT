@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeUser } from "../utils/userSlice";
 import { auth } from "../utils/firebase";
 import { signOut } from "firebase/auth";
 import { Down } from "../utils/icons";
+import { addUser, removeUser } from "../utils/userSlice";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Header = () => {
   const user = useSelector((store) => store?.user);
@@ -12,8 +13,30 @@ const Header = () => {
   const dispatch = useDispatch();
   const [dropDown, setDropDown] = useState(false);
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = auth.currentUser;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browser");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+
+      return () => unsubscribe();
+    });
+  }, []);
+
   return (
-    <div className=" flex justify-between bg-gradient-to-b from-black w-full p-4">
+    <div className="absolute top-0 z-30 right-0 flex justify-between bg-gradient-to-b from-black w-screen p-8 ">
       <div>
         <img
           className="w-44 h-12"
@@ -37,23 +60,23 @@ const Header = () => {
             </div>
           </div>
           <div
-            className={`absolute w-2/12  transition-[height] duration-1000 ${
+            className={`absolute w-2/12 bg-white transition-[height] duration-1000 ${
               dropDown ? "h-24" : "h-0"
-            } overflow-hidden right-4 text-right font-medium text-sm cursor-pointer shadow-lg shadow-slate-300 `}
+            } overflow-hidden right-4 text-right font-medium text-sm cursor-pointer shadow-lg shadow-slate-500 `}
           >
             <ul>
-              <li className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400">
+              <li className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400 hover:bg-[#f2f2f2]">
                 Home
               </li>
-              <li className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400">
+              <li className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400 hover:bg-[#f2f2f2]">
                 Settings
               </li>
               <li
-                className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400"
+                className="my-2 px-2 border-b-2 border-slate-50 hover:text-orange-400 hover:bg-[#f2f2f2]"
                 onClick={() => {
                   signOut(auth)
                     .then(() => {
-                      dispatch;
+                      setDropDown(!dropDown);
                       navigate("/");
                     })
                     .catch((error) => {
