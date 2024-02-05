@@ -7,7 +7,7 @@ const Browse = () => {
 
   return (
     <>
-      <div className="browser h-fit">
+      <div className="browser bg-black h-fit">
         <MainContainer />
         <SecondaryContainer />
       </div>

@@ -1,14 +1,15 @@
 import React from "react";
-import useFetch from "../hooks/useFetch";
+import useFetchTrailer from "../hooks/useFetchTrailer";
+import { useSelector } from "react-redux";
 
 const BackgroundVideo = ({ videoId }) => {
-  const videoDetail = useFetch(videoId);
+  useFetchTrailer(videoId);
+  const videoDetail = useSelector((store) => store?.movie?.movieTrailer);
   if (!videoDetail) return;
   const trailerList = videoDetail.results;
   const trailer = trailerList.find(
     (item) => item.type === "Trailer" && item.name === "Official Trailer"
   );
-  console.log(trailer);
 
   return (
     <div className="w-full ">

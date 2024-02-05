@@ -8,9 +8,16 @@ div {
 }
 
 #hero {
-  display: none;
+  /* display: none; */
+  opacity: 0;
+  transition: opacity 2s;
 }
+
 details:hover #hero {
   display: block;
   cursor: pointer;
+}
+
+#hero:hover {
+  opacity: 1;
 }
