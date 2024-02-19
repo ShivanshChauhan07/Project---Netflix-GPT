@@ -107,8 +107,7 @@ const Form = ({ toggle, setToggle, show, setShow }) => {
                   const user = userCredential.user;
                   updateProfile(user, {
                     displayName: "Shivansh Chauhan",
-                    photoURL:
-                      "https://avatars.githubusercontent.com/u/88490665?v=4",
+                    photoURL: "https://pbs.twimg.com/media/DN1OYIFX0AAbOMe.jpg",
                   })
                     .then(() => {
                       const { uid, email, displayName, photoURL } =
@@ -145,8 +144,7 @@ const Form = ({ toggle, setToggle, show, setShow }) => {
                   const user = userCredential.user;
                   updateProfile(user, {
                     displayName: "Shivansh Chauhan",
-                    photoURL:
-                      "https://avatars.githubusercontent.com/u/88490665?v=4",
+                    photoURL: "https://pbs.twimg.com/media/DN1OYIFX0AAbOMe.jpg",
                   })
                     .then(() => {
                       const { uid, email, displayName, photoURL } =
@@ -167,6 +165,7 @@ const Form = ({ toggle, setToggle, show, setShow }) => {
                 .catch((error) => {
                   const errorCode = error.code;
                   const errorGist = error.message;
+                  console.log(errorCode);
                   setErrormessage(errorGist);
                 });
             }
