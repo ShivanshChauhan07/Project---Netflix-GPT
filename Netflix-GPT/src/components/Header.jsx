@@ -47,11 +47,8 @@ const Header = () => {
       {user && (
         <div className="">
           <div className="my-auto  flex">
-            <img
-              className="rounded-full w-14 h-14"
-              src={user.photoURL}
-              alt="logo"
-            />
+            <i class="text-red-500  mr-24 my-auto hover:cursor-pointer text-3xl fa-solid fa-magnifying-glass"></i>
+            <img className=" w-14 h-14" src={user.photoURL} alt="logo" />
             <div
               className="text-white ml-2 my-auto cursor-pointer"
               onClick={() => setDropDown(!dropDown)}

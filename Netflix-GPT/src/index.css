@@ -21,3 +21,8 @@ details:hover #hero {
 #hero:hover {
   opacity: 1;
 }
+
+.list::-webkit-scrollbar {
+  background: transparent;
+  width: 0;
+}

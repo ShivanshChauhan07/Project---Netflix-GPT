@@ -10,7 +10,6 @@ const BackgroundVideo = ({ videoId }) => {
   const trailer = trailerList.find(
     (item) => item.type === "Trailer" && item.name.includes("Official Trailer")
   );
-  console.log(trailer);
 
   return (
     <div className="w-full ">

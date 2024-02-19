@@ -8,6 +8,7 @@ import Browse from "./pages/Browse.jsx";
 import appStore from "./utils/appStore.js";
 import Header from "./components/Header.jsx";
 import Loading from "./pages/Loading.jsx";
+import ResultPage from "./pages/ResultPage.jsx";
 
 const AppLayout = () => {
   return (
@@ -30,6 +31,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/browser",
         element: <Browse />,
+      },
+      {
+        path: "/result",
+        element: <ResultPage />,
       },
     ],
   },
