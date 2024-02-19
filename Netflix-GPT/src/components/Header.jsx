@@ -47,7 +47,9 @@ const Header = () => {
       {user && (
         <div className="">
           <div className="my-auto  flex">
-            <i class="text-red-500  mr-24 my-auto hover:cursor-pointer text-3xl fa-solid fa-magnifying-glass"></i>
+            <button title="Shift + k to search">
+              <i class="text-red-500  mr-24 my-auto hover:cursor-pointer text-3xl fa-solid fa-magnifying-glass"></i>
+            </button>
             <img className=" w-14 h-14" src={user.photoURL} alt="logo" />
             <div
               className="text-white ml-2 my-auto cursor-pointer"
