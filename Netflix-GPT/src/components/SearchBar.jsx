@@ -54,7 +54,7 @@ const SearchBar = () => {
                 );
 
                 const tmdbResult = await Promise.all(promiseArray);
-                console.log(tmdbResult);
+                // console.log(tmdbResult);
                 dispatch(
                   addGptMovieResult({
                     movieName: gptMovieList,

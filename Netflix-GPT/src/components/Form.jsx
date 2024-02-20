@@ -165,7 +165,7 @@ const Form = ({ toggle, setToggle, show, setShow }) => {
                 .catch((error) => {
                   const errorCode = error.code;
                   const errorGist = error.message;
-                  console.log(errorCode);
+                  // console.log(errorCode);
                   setErrormessage(errorGist);
                 });
             }
