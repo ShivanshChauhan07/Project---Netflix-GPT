@@ -21,6 +21,3 @@ export const URL4 =
   "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&region=IN";
 
 export const IMG_CDN = "https://image.tmdb.org/t/p/w500/";
-
-export const OPEN_AI_KEY =
-  "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";
