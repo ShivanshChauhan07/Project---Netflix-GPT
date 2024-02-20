@@ -1,8 +1,10 @@
 import OpenAI from "openai";
 import { OPEN_AI_KEY } from "./constant";
 
+const key = import.meta.env.VITE_API_KEY;
+
 const openai = new OpenAI({
-  apiKey: OPEN_AI_KEY,
+  apiKey: key,
   dangerouslyAllowBrowser: true,
 });
 

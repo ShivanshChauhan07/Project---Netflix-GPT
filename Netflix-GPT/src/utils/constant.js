@@ -23,4 +23,4 @@ export const URL4 =
 export const IMG_CDN = "https://image.tmdb.org/t/p/w500/";
 
 export const OPEN_AI_KEY =
-  "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";
+  "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";
