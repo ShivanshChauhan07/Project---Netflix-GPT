@@ -2,7 +2,6 @@ import React from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies, flag }) => {
-  console.log(import.meta.env.VITE_API_KEY);
   return (
     movies && (
       <>
